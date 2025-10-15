@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreadHer - AI Fashion Sustainability Advisor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-green-50">
+    
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-purple-200">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-gradient-to-br from-purple-600 to-pink-600 p-2 rounded-lg">
+                        <svg class="w-8 h-8 text-white" viewBox="0 0 100 100" fill="none">
+                            <path d="M50 10 Q30 20, 30 35 L30 50" stroke="currentColor" stroke-width="3" fill="none"/>
+                            <path d="M50 10 Q70 20, 70 35 L70 50" stroke="currentColor" stroke-width="3" fill="none"/>
+                            <circle cx="50" cy="50" r="20" stroke="currentColor" stroke-width="3" fill="none"/>
+                            <path d="M50 70 L50 85" stroke="currentColor" stroke-width="3"/>
+                            <path d="M42 82 L58 82" stroke="currentColor" stroke-width="3"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">ThreadHer</h1>
+                        <p class="text-sm text-gray-600">Threading Sustainability Into Every Wardrobe</p>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-r from-purple-100 to-pink-100 px-4 py-2 rounded-lg">
+                    <span class="text-xs font-medium text-purple-700">Women in Tech • AWS AI Hackathon 2025</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        
+        <!-- Connection Status -->
+        <div id="connection-status" class="hidden mb-4 px-4 py-2 rounded-lg text-sm"></div>
+
+        <!-- Chat Box -->
+        <div class="bg-white rounded-xl shadow-lg p-6 border border-purple-100 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Chat with ThreadHer AI</h2>
+            
+            <!-- Messages -->
+            <div id="chat-messages" class="h-96 overflow-y-auto mb-4 space-y-4 p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg">
+                <div class="flex justify-start">
+                    <div class="max-w-md px-4 py-2 rounded-lg bg-white text-gray-800 border border-purple-200">
+                        Hi! I'm ThreadHer, your AI fashion sustainability advisor. Upload a garment photo or ask me anything about sustainable fashion! 💜
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div id="loading" class="hidden text-center py-2">
+                <div class="inline-block animate-spin rounded-full h-6 w-6 border-4 border-purple-600 border-t-transparent"></div>
+                <span class="ml-2 text-sm text-gray-600">ThreadHer is analyzing...</span>
+            </div>
+
+            <!-- Image Upload Section -->
+            <div id="image-upload-section" class="mb-4 p-4 bg-purple-50 rounded-lg border-2 border-dashed border-purple-300">
+                <div class="flex items-center justify-between mb-2">
+                    <label class="text-sm font-medium text-gray-700">📸 Upload garment photo (optional)</label>
+                    <button onclick="clearImage()" id="clear-image-btn" class="hidden text-sm text-red-600 hover:text-red-800">✕ Clear</button>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <input type="file" id="image-input" accept="image/*" class="hidden" onchange="handleImageSelect(event)" />
+                    <button onclick="document.getElementById('image-input').click()" class="px-4 py-2 bg-white border border-purple-300 rounded-lg hover:bg-purple-50 transition text-sm">
+                        Choose Image
+                    </button>
+                    <span id="image-filename" class="text-sm text-gray-600">No image selected</span>
+                </div>
+                <div id="image-preview" class="hidden mt-3">
+                    <img id="preview-img" src="" alt="Preview" class="max-h-48 rounded-lg border border-purple-200"/>
+                </div>
+            </div>
+
+            <!-- Input -->
+            <div class="flex space-x-2">
+                <input type="text" id="user-input" placeholder="Ask about sustainable fashion or upload a photo..." class="flex-1 px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" onkeypress="if(event.key==='Enter') sendMessage()" />
+                <button onclick="sendMessage()" id="send-button" class="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition shadow-lg">
+                    Send
+                </button>
+            </div>
+
+            <div class="mt-4 text-xs text-gray-500 text-center">
+                Powered by Amazon Bedrock • Claude 3.5 Sonnet
+            </div>
+        </div>
+
+        <!-- Example Questions -->
+        <div class="bg-white rounded-xl shadow-lg p-6 border border-purple-100">
+            <h3 class="font-semibold text-gray-900 mb-3">Try asking:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <button onclick="askQuestion('Calculate the carbon footprint of a cotton t-shirt')" class="text-left px-4 py-2 bg-purple-50 hover:bg-purple-100 rounded-lg text-sm text-gray-700 transition">
+                    💚 Carbon footprint of a cotton t-shirt?
+                </button>
+                <button onclick="askQuestion('My jeans are damaged. What should I do?')" class="text-left px-4 py-2 bg-purple-50 hover:bg-purple-100 rounded-lg text-sm text-gray-700 transition">
+                    ♻️ What to do with damaged jeans?
+                </button>
+                <button onclick="askQuestion('Should I keep my 2-year-old jacket or buy new?')" class="text-left px-4 py-2 bg-purple-50 hover:bg-purple-100 rounded-lg text-sm text-gray-700 transition">
+                    👗 Keep old clothes or buy new?
+                </button>
+                <button onclick="askQuestion('Suggest sustainable alternatives to fast fashion')" class="text-left px-4 py-2 bg-purple-50 hover:bg-purple-100 rounded-lg text-sm text-gray-700 transition">
+                    🌍 Sustainable fashion alternatives?
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ⚠️ YOUR API URLS
+        const API_URL = 'https://v26h55akx7.execute-api.us-east-1.amazonaws.com/prod/chat';
+        const UPLOAD_URL = 'https://v26h55akx7.execute-api.us-east-1.amazonaws.com/prod/upload-url';
+        
+        // Generate unique session ID
+        let sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        let selectedImageBase64 = null;
+        let selectedImageFile = null;
+
+        function handleImageSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.size > 5 * 1024 * 1024) {
+                showStatus('✗ Image too large. Please upload an image under 5MB', 'error');
+                return;
+            }
+
+            selectedImageFile = file;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                selectedImageBase64 = e.target.result;
+                document.getElementById('preview-img').src = selectedImageBase64;
+                document.getElementById('image-preview').classList.remove('hidden');
+                document.getElementById('image-filename').textContent = file.name;
+                document.getElementById('clear-image-btn').classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearImage() {
+            selectedImageBase64 = null;
+            selectedImageFile = null;
+            document.getElementById('image-input').value = '';
+            document.getElementById('image-preview').classList.add('hidden');
+            document.getElementById('image-filename').textContent = 'No image selected';
+            document.getElementById('clear-image-btn').classList.add('hidden');
+        }
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('connection-status');
+            statusDiv.className = `mb-4 px-4 py-2 rounded-lg text-sm ${
+                type === 'error' ? 'bg-red-100 text-red-700 border border-red-300' :
+                type === 'success' ? 'bg-green-100 text-green-700 border border-green-300' :
+                'bg-blue-100 text-blue-700 border border-blue-300'
+            }`;
+            statusDiv.textContent = message;
+            statusDiv.classList.remove('hidden');
+            
+            if (type === 'success') {
+                setTimeout(() => statusDiv.classList.add('hidden'), 3000);
+            }
+        }
+
+        function askQuestion(question) {
+            document.getElementById('user-input').value = question;
+            sendMessage();
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('user-input');
+            const message = input.value.trim();
+            
+            if (!message && !selectedImageBase64) {
+                showStatus('⚠ Please enter a message or upload an image', 'error');
+                return;
+            }
+
+            const sendButton = document.getElementById('send-button');
+            sendButton.disabled = true;
+            sendButton.classList.add('opacity-50', 'cursor-not-allowed');
+
+            document.getElementById('loading').classList.remove('hidden');
+
+            const displayMessage = message || '📷 Uploaded an image for analysis';
+            const imagePreviewUrl = selectedImageBase64;
+            addMessage(displayMessage, 'user', imagePreviewUrl);
+            input.value = '';
+
+            try {
+                let queryText = message || 'Please analyze this garment image for sustainability.';
+                let s3_key = null;
+
+                // STEP 1: Upload image to S3 if present
+                if (selectedImageBase64) {
+                    showStatus('📤 Uploading image to S3...', 'info');
+                    
+                    const uploadResponse = await fetch(UPLOAD_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            imageData: selectedImageBase64,
+                            filename: selectedImageFile.name,
+                            contentType: selectedImageFile.type
+                        })
+                    });
+
+                    if (!uploadResponse.ok) {
+                        throw new Error('Image upload failed');
+                    }
+
+                    const uploadData = await uploadResponse.json();
+                    console.log('Upload response:', uploadData);
+
+                    // Handle both direct response and API Gateway wrapped response
+                    let success, key;
+                    if (uploadData.body && typeof uploadData.body === 'string') {
+                        // Response is wrapped in body (API Gateway format)
+                        const parsed = JSON.parse(uploadData.body);
+                        success = parsed.success;
+                        key = parsed.key;
+                    } else if (uploadData.body && typeof uploadData.body === 'object') {
+                        // Body is already an object
+                        success = uploadData.body.success;
+                        key = uploadData.body.key;
+                    } else {
+                        // Response is direct
+                        success = uploadData.success;
+                        key = uploadData.key;
+                    }
+
+                    console.log('Parsed - success:', success, 'key:', key);
+
+                    if (success && key) {
+                        s3_key = key;
+                        showStatus('🔍 Analyzing image with AI...', 'info');
+                    } else {
+                        console.error('Full upload response:', JSON.stringify(uploadData, null, 2));
+                        throw new Error('Upload succeeded but no S3 key returned');
+                    }
+                }
+
+                // STEP 2: Send query to APIHandler
+                const payload = {
+                    query: queryText,
+                    session_id: sessionId
+                };
+
+                if (s3_key) {
+                    payload.s3_key = s3_key;
+                }
+                
+                console.log('Sending to APIHandler:', payload);
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response data:', data);
+
+                document.getElementById('loading').classList.add('hidden');
+
+                if (response.ok) {
+                    if (data.response) {
+                        addMessage(data.response, 'assistant');
+                        showStatus('✓ Analysis complete!', 'success');
+                        
+                        if (selectedImageBase64) {
+                            clearImage();
+                        }
+                    } else {
+                        addMessage('I received your question but couldn\'t generate a response. Please try again.', 'assistant');
+                        showStatus('⚠ No response content received', 'error');
+                    }
+                } else {
+                    const errorMsg = data.error || data.message || 'Unknown error';
+                    addMessage(`Sorry, I encountered an error: ${errorMsg}`, 'assistant');
+                    showStatus(`✗ Error ${response.status}: ${errorMsg}`, 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('loading').classList.add('hidden');
+                
+                addMessage('Sorry, an error occurred: ' + error.message, 'assistant');
+                showStatus('✗ Error: ' + error.message, 'error');
+            } finally {
+                sendButton.disabled = false;
+                sendButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        function addMessage(text, role, imageUrl = null) {
+            const messagesDiv = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex ${role === 'user' ? 'justify-end' : 'justify-start'}`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = `max-w-md px-4 py-2 rounded-lg ${
+                role === 'user' 
+                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' 
+                    : 'bg-white text-gray-800 border border-purple-200'
+            }`;
+            
+            if (imageUrl) {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.className = 'max-w-xs rounded-lg mb-2';
+                img.alt = 'Uploaded garment';
+                bubble.appendChild(img);
+            }
+            
+            const textDiv = document.createElement('div');
+            textDiv.style.whiteSpace = 'pre-wrap';
+            textDiv.textContent = text;
+            bubble.appendChild(textDiv);
+            
+            messageDiv.appendChild(bubble);
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        window.addEventListener('load', async () => {
+            console.log('ThreadHer loaded');
+            console.log('API URL:', API_URL);
+            console.log('Upload URL:', UPLOAD_URL);
+            console.log('Session ID:', sessionId);
+            
+            showStatus('🔗 Testing connection...', 'info');
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        query: 'Hello',
+                        session_id: sessionId
+                    })
+                });
+                
+                if (response.ok) {
+                    showStatus('✓ Connected to ThreadHer AI', 'success');
+                } else {
+                    showStatus('⚠ API connection issue - but you can still try!', 'error');
+                }
+            } catch (error) {
+                showStatus('⚠ Could not reach API', 'error');
+                console.error('Connection test failed:', error);
+            }
+        });
+    </script>
+</body>
+</html>

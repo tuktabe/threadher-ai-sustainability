@@ -1,0 +1,7 @@
+{
+  "httpMethod": "POST",
+  "body": "{\"query\": \"Calculate the carbon footprint of a cotton t-shirt from Bangladesh\"}",
+  "headers": {
+    "Content-Type": "application/json"
+  }
+}

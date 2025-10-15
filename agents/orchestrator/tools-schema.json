@@ -1,0 +1,173 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "ThreadHer Agent Tools API",
+    "version": "1.0.0",
+    "description": "Tools for ThreadHer AI sustainability advisor"
+  },
+  "paths": {
+    "/analyze-garment": {
+      "post": {
+        "summary": "Analyze garment image",
+        "description": "Uses computer vision to identify garment type, material, condition, and style",
+        "operationId": "analyzeGarment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image_s3_key": {
+                    "type": "string",
+                    "description": "S3 key of the garment image"
+                  },
+                  "bucket_name": {
+                    "type": "string",
+                    "description": "S3 bucket name"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "User identifier"
+                  }
+                },
+                "required": ["image_s3_key", "bucket_name"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful analysis",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "garment_id": {
+                      "type": "string"
+                    },
+                    "analysis": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/calculate-carbon": {
+      "post": {
+        "summary": "Calculate carbon footprint",
+        "description": "Calculates environmental impact and sustainability score for a garment",
+        "operationId": "calculateCarbon",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "garment_type": {
+                    "type": "string",
+                    "description": "Type of garment (tshirt, jeans, dress, etc.)"
+                  },
+                  "material": {
+                    "type": "string",
+                    "description": "Primary material"
+                  },
+                  "origin": {
+                    "type": "string",
+                    "description": "Manufacturing country"
+                  },
+                  "estimated_age_years": {
+                    "type": "number",
+                    "description": "Age in years"
+                  }
+                },
+                "required": ["garment_type", "material"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Carbon calculation results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total_carbon_footprint_kg": {
+                      "type": "number"
+                    },
+                    "sustainability_score": {
+                      "type": "number"
+                    },
+                    "potential_savings_kg": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-circular-options": {
+      "post": {
+        "summary": "Get circular economy options",
+        "description": "Provides repair, resale, recycle options based on garment condition",
+        "operationId": "getCircularOptions",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "garment_type": {
+                    "type": "string",
+                    "description": "Type of garment"
+                  },
+                  "condition": {
+                    "type": "string",
+                    "description": "Current condition"
+                  },
+                  "user_location": {
+                    "type": "string",
+                    "description": "User's location (optional)"
+                  }
+                },
+                "required": ["garment_type", "condition"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Circular economy options",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "circular_options": {
+                      "type": "array"
+                    },
+                    "recommended_action": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

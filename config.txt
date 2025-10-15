@@ -1,0 +1,3 @@
+S3_BUCKET_NAME=threadher-images-2025
+AWS_REGION=us-east-1
+arn:aws:iam::651187148162:role/ThreadHer-LambdaRole
