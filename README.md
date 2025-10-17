@@ -44,7 +44,7 @@ User → Frontend (S3) → API Gateway → Lambda Functions → Amazon Bedrock (
 
 ## 🚀 Live Demo
 
-**Website**: [YOUR_WEBSITE_URL_HERE]
+**Website**: [https://threadher-app.s3.us-east-1.amazonaws.com/index.html]
 
 **Try these:**
 1. Upload a garment image (jeans, dress, t-shirt)
