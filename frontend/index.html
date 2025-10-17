@@ -3,119 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThreadHer - AI Fashion Sustainability Advisor</title>
+    <title>ThreadHer AI - Sustainable Fashion Advisor</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom, #f0fdf4, #ecfdf5, #d1fae5);
+        }
+        
+        .nature-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .leaf-decoration {
+            position: absolute;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .chat-bubble-user {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+        
+        .chat-bubble-ai {
+            background: white;
+            color: #1f2937;
+            border: 2px solid #d1fae5;
+        }
+        
+        .nature-button {
+            background: linear-gradient(135deg, #10b981, #059669);
+            transition: all 0.3s ease;
+        }
+        
+        .nature-button:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(209, 250, 229, 0.5);
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-green-50">
+<body class="min-h-screen">
     
+
+
     <!-- Header -->
-    <header class="bg-white shadow-sm border-b border-purple-200">
-        <div class="max-w-7xl mx-auto px-4 py-4">
+    <header class="glass-effect shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="bg-gradient-to-br from-purple-600 to-pink-600 p-2 rounded-lg">
-                        <svg class="w-8 h-8 text-white" viewBox="0 0 100 100" fill="none">
-                            <path d="M50 10 Q30 20, 30 35 L30 50" stroke="currentColor" stroke-width="3" fill="none"/>
-                            <path d="M50 10 Q70 20, 70 35 L70 50" stroke="currentColor" stroke-width="3" fill="none"/>
-                            <circle cx="50" cy="50" r="20" stroke="currentColor" stroke-width="3" fill="none"/>
-                            <path d="M50 70 L50 85" stroke="currentColor" stroke-width="3"/>
-                            <path d="M42 82 L58 82" stroke="currentColor" stroke-width="3"/>
-                        </svg>
-                    </div>
+                <div class="flex items-center gap-4">
+                    <!-- Simple ThreadHer Robot -->
+                    <svg class="w-24 h-24" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(100, 100)">
+                            <!-- Head -->
+                            <rect x="-42" y="-42" width="84" height="84" rx="16" fill="#2d3748" stroke="#1a202c" stroke-width="4"/>
+                            
+                            <!-- Antennas -->
+                            <line x1="-28" y1="-42" x2="-28" y2="-60" stroke="#4a5568" stroke-width="5" stroke-linecap="round"/>
+                            <circle cx="-28" cy="-60" r="7" fill="#4a5568" stroke="#2d3748" stroke-width="2"/>
+                            <line x1="28" y1="-42" x2="28" y2="-60" stroke="#4a5568" stroke-width="5" stroke-linecap="round"/>
+                            <circle cx="28" cy="-60" r="7" fill="#4a5568" stroke="#2d3748" stroke-width="2"/>
+                            
+                            <!-- Green T -->
+                            <text x="0" y="-12" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#10b981">T</text>
+                            
+                            <!-- Eyes -->
+                            <rect x="-26" y="8" width="16" height="8" rx="2" fill="#38bdf8"/>
+                            <rect x="10" y="8" width="16" height="8" rx="2" fill="#38bdf8"/>
+                            
+                            <!-- Mouth -->
+                            <rect x="-24" y="28" width="48" height="12" rx="3" fill="#0ea5e9"/>
+                            <path d="M-12 32 Q0 38 12 32" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        </g>
+                    </svg>
+                    
                     <div>
-                        <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">ThreadHer</h1>
-                        <p class="text-sm text-gray-600">Threading Sustainability Into Every Wardrobe</p>
+                        <h1 class="text-2xl font-bold text-gray-900">ThreadHer AI</h1>
+                        <p class="text-sm text-gray-600">Sustainable Fashion Advisor</p>
                     </div>
                 </div>
-                <div class="bg-gradient-to-r from-purple-100 to-pink-100 px-4 py-2 rounded-lg">
-                    <span class="text-xs font-medium text-purple-700">Women in Tech • AWS AI Hackathon 2025</span>
+                
+                <div class="flex items-center gap-2">
+                    <span class="px-3 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full border border-green-200">🌿 Eco-Friendly</span>
+                    <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-medium rounded-full border border-purple-200">🤖 AI-Powered</span>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="max-w-5xl mx-auto px-6 py-8">
         
         <!-- Connection Status -->
-        <div id="connection-status" class="hidden mb-4 px-4 py-2 rounded-lg text-sm"></div>
+        <div id="connection-status" class="hidden mb-4 px-4 py-3 rounded-lg text-sm font-medium"></div>
 
-        <!-- Chat Box -->
-        <div class="bg-white rounded-xl shadow-lg p-6 border border-purple-100 mb-6">
-            <h2 class="text-xl font-bold text-gray-900 mb-4">Chat with ThreadHer AI</h2>
+        <!-- Chat Container -->
+        <div class="nature-card rounded-2xl shadow-xl p-6 mb-6">
             
-            <!-- Messages -->
-            <div id="chat-messages" class="h-96 overflow-y-auto mb-4 space-y-4 p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg">
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="h-[500px] overflow-y-auto mb-6 space-y-3 p-4 bg-gradient-to-b from-green-50/30 to-emerald-50/30 rounded-xl">
                 <div class="flex justify-start">
-                    <div class="max-w-md px-4 py-2 rounded-lg bg-white text-gray-800 border border-purple-200">
-                        Hi! I'm ThreadHer, your AI fashion sustainability advisor. Upload a garment photo or ask me anything about sustainable fashion! 💜
+                    <div class="chat-bubble-ai max-w-xl px-5 py-3 rounded-2xl shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xl">🌸</span>
+                            <span class="font-semibold text-sm text-green-700">ThreadHer AI</span>
+                        </div>
+                        <p class="text-gray-700">Hello! I'm your sustainable fashion advisor. Upload a photo of any garment, and I'll help you make eco-conscious decisions. Let's create a more sustainable wardrobe together! 💚</p>
                     </div>
                 </div>
             </div>
 
             <!-- Loading -->
-            <div id="loading" class="hidden text-center py-2">
-                <div class="inline-block animate-spin rounded-full h-6 w-6 border-4 border-purple-600 border-t-transparent"></div>
-                <span class="ml-2 text-sm text-gray-600">ThreadHer is analyzing...</span>
+            <div id="loading" class="hidden text-center py-4 mb-4">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-green-500 border-t-transparent"></div>
+                <p class="mt-2 text-sm text-gray-600 font-medium">Analyzing your garment...</p>
             </div>
 
-            <!-- Image Upload Section -->
-            <div id="image-upload-section" class="mb-4 p-4 bg-purple-50 rounded-lg border-2 border-dashed border-purple-300">
-                <div class="flex items-center justify-between mb-2">
-                    <label class="text-sm font-medium text-gray-700">📸 Upload garment photo (optional)</label>
-                    <button onclick="clearImage()" id="clear-image-btn" class="hidden text-sm text-red-600 hover:text-red-800">✕ Clear</button>
+            <!-- Image Upload -->
+            <div class="mb-6 p-5 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border-2 border-dashed border-green-300">
+                <div class="flex items-center justify-between mb-3">
+                    <label class="text-sm font-semibold text-gray-700">📸 Upload Garment Photo</label>
+                    <button onclick="clearImage()" id="clear-image-btn" class="hidden text-sm text-red-600 hover:text-red-700 font-medium">✕ Clear</button>
                 </div>
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center gap-3 mb-3">
                     <input type="file" id="image-input" accept="image/*" class="hidden" onchange="handleImageSelect(event)" />
-                    <button onclick="document.getElementById('image-input').click()" class="px-4 py-2 bg-white border border-purple-300 rounded-lg hover:bg-purple-50 transition text-sm">
+                    <button onclick="document.getElementById('image-input').click()" class="nature-button px-5 py-2.5 text-white rounded-lg font-medium shadow-md">
                         Choose Image
                     </button>
-                    <span id="image-filename" class="text-sm text-gray-600">No image selected</span>
+                    <span id="image-filename" class="text-sm text-gray-600 italic">No image selected</span>
                 </div>
                 <div id="image-preview" class="hidden mt-3">
-                    <img id="preview-img" src="" alt="Preview" class="max-h-48 rounded-lg border border-purple-200"/>
+                    <img id="preview-img" src="" alt="Preview" class="max-h-56 max-w-full rounded-xl border-2 border-green-200 object-contain mx-auto shadow-md"/>
                 </div>
             </div>
 
-            <!-- Input -->
-            <div class="flex space-x-2">
-                <input type="text" id="user-input" placeholder="Ask about sustainable fashion or upload a photo..." class="flex-1 px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" onkeypress="if(event.key==='Enter') sendMessage()" />
-                <button onclick="sendMessage()" id="send-button" class="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition shadow-lg">
+            <!-- Input Area -->
+            <div class="flex gap-3">
+                <input 
+                    type="text" 
+                    id="user-input" 
+                    placeholder="Ask about sustainable fashion..." 
+                    class="flex-1 px-5 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-400" 
+                    onkeypress="if(event.key==='Enter') sendMessage()" 
+                />
+                <button onclick="sendMessage()" id="send-button" class="nature-button px-8 py-3 text-white rounded-xl font-semibold shadow-md">
                     Send
                 </button>
             </div>
 
-            <div class="mt-4 text-xs text-gray-500 text-center">
+            <div class="mt-4 text-xs text-center text-gray-500">
                 Powered by Amazon Bedrock • Claude 3.5 Sonnet
             </div>
         </div>
 
-        <!-- Example Questions -->
-        <div class="bg-white rounded-xl shadow-lg p-6 border border-purple-100">
-            <h3 class="font-semibold text-gray-900 mb-3">Try asking:</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <button onclick="askQuestion('Calculate the carbon footprint of a cotton t-shirt')" class="text-left px-4 py-2 bg-purple-50 hover:bg-purple-100 rounded-lg text-sm text-gray-700 transition">
+        <!-- Quick Actions -->
+        <div class="nature-card rounded-2xl shadow-xl p-6">
+            <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span>🌿</span> Quick Questions
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <button onclick="askQuestion('Calculate the carbon footprint of a cotton t-shirt')" class="text-left px-4 py-3 bg-white hover:bg-green-50 border-2 border-gray-200 hover:border-green-300 rounded-xl text-sm text-gray-700 transition">
                     💚 Carbon footprint of a cotton t-shirt?
                 </button>
-                <button onclick="askQuestion('My jeans are damaged. What should I do?')" class="text-left px-4 py-2 bg-purple-50 hover:bg-purple-100 rounded-lg text-sm text-gray-700 transition">
+                <button onclick="askQuestion('My jeans are damaged. What should I do?')" class="text-left px-4 py-3 bg-white hover:bg-green-50 border-2 border-gray-200 hover:border-green-300 rounded-xl text-sm text-gray-700 transition">
                     ♻️ What to do with damaged jeans?
                 </button>
-                <button onclick="askQuestion('Should I keep my 2-year-old jacket or buy new?')" class="text-left px-4 py-2 bg-purple-50 hover:bg-purple-100 rounded-lg text-sm text-gray-700 transition">
+                <button onclick="askQuestion('Should I keep my 2-year-old jacket or buy new?')" class="text-left px-4 py-3 bg-white hover:bg-green-50 border-2 border-gray-200 hover:border-green-300 rounded-xl text-sm text-gray-700 transition">
                     👗 Keep old clothes or buy new?
                 </button>
-                <button onclick="askQuestion('Suggest sustainable alternatives to fast fashion')" class="text-left px-4 py-2 bg-purple-50 hover:bg-purple-100 rounded-lg text-sm text-gray-700 transition">
+                <button onclick="askQuestion('Suggest sustainable alternatives to fast fashion')" class="text-left px-4 py-3 bg-white hover:bg-green-50 border-2 border-gray-200 hover:border-green-300 rounded-xl text-sm text-gray-700 transition">
                     🌍 Sustainable fashion alternatives?
                 </button>
             </div>
         </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-8 text-sm text-gray-600">
+            <p>AWS AI Hackathon 2025 - Women in Tech Category</p>
+        </div>
     </div>
 
     <script>
-        // ⚠️ YOUR API URLS
         const API_URL = 'https://v26h55akx7.execute-api.us-east-1.amazonaws.com/prod/chat';
         const UPLOAD_URL = 'https://v26h55akx7.execute-api.us-east-1.amazonaws.com/prod/upload-url';
         
-        // Generate unique session ID
         let sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
         let selectedImageBase64 = null;
         let selectedImageFile = null;
@@ -125,7 +206,7 @@
             if (!file) return;
 
             if (file.size > 5 * 1024 * 1024) {
-                showStatus('✗ Image too large. Please upload an image under 5MB', 'error');
+                showStatus('✗ Image too large. Please upload under 5MB', 'error');
                 return;
             }
 
@@ -153,10 +234,10 @@
 
         function showStatus(message, type) {
             const statusDiv = document.getElementById('connection-status');
-            statusDiv.className = `mb-4 px-4 py-2 rounded-lg text-sm ${
-                type === 'error' ? 'bg-red-100 text-red-700 border border-red-300' :
-                type === 'success' ? 'bg-green-100 text-green-700 border border-green-300' :
-                'bg-blue-100 text-blue-700 border border-blue-300'
+            statusDiv.className = `mb-4 px-4 py-3 rounded-lg text-sm font-medium ${
+                type === 'error' ? 'bg-red-50 text-red-700 border-2 border-red-200' :
+                type === 'success' ? 'bg-green-50 text-green-700 border-2 border-green-200' :
+                'bg-blue-50 text-blue-700 border-2 border-blue-200'
             }`;
             statusDiv.textContent = message;
             statusDiv.classList.remove('hidden');
@@ -186,18 +267,17 @@
 
             document.getElementById('loading').classList.remove('hidden');
 
-            const displayMessage = message || '📷 Uploaded an image for analysis';
+            const displayMessage = message || '📷 Uploaded image for analysis';
             const imagePreviewUrl = selectedImageBase64;
             addMessage(displayMessage, 'user', imagePreviewUrl);
             input.value = '';
 
             try {
-                let queryText = message || 'Please analyze this garment image for sustainability.';
+                let queryText = message || 'Please analyze this garment for sustainability.';
                 let s3_key = null;
 
-                // STEP 1: Upload image to S3 if present
                 if (selectedImageBase64) {
-                    showStatus('📤 Uploading image to S3...', 'info');
+                    showStatus('📤 Uploading image...', 'info');
                     
                     const uploadResponse = await fetch(UPLOAD_URL, {
                         method: 'POST',
@@ -217,37 +297,28 @@
                     }
 
                     const uploadData = await uploadResponse.json();
-                    console.log('Upload response:', uploadData);
 
-                    // Handle both direct response and API Gateway wrapped response
                     let success, key;
                     if (uploadData.body && typeof uploadData.body === 'string') {
-                        // Response is wrapped in body (API Gateway format)
                         const parsed = JSON.parse(uploadData.body);
                         success = parsed.success;
                         key = parsed.key;
                     } else if (uploadData.body && typeof uploadData.body === 'object') {
-                        // Body is already an object
                         success = uploadData.body.success;
                         key = uploadData.body.key;
                     } else {
-                        // Response is direct
                         success = uploadData.success;
                         key = uploadData.key;
                     }
 
-                    console.log('Parsed - success:', success, 'key:', key);
-
                     if (success && key) {
                         s3_key = key;
-                        showStatus('🔍 Analyzing image with AI...', 'info');
+                        showStatus('🔍 Analyzing with AI...', 'info');
                     } else {
-                        console.error('Full upload response:', JSON.stringify(uploadData, null, 2));
                         throw new Error('Upload succeeded but no S3 key returned');
                     }
                 }
 
-                // STEP 2: Send query to APIHandler
                 const payload = {
                     query: queryText,
                     session_id: sessionId
@@ -256,8 +327,6 @@
                 if (s3_key) {
                     payload.s3_key = s3_key;
                 }
-                
-                console.log('Sending to APIHandler:', payload);
 
                 const response = await fetch(API_URL, {
                     method: 'POST',
@@ -268,9 +337,7 @@
                     body: JSON.stringify(payload)
                 });
 
-                console.log('Response status:', response.status);
                 const data = await response.json();
-                console.log('Response data:', data);
 
                 document.getElementById('loading').classList.add('hidden');
 
@@ -284,12 +351,12 @@
                         }
                     } else {
                         addMessage('I received your question but couldn\'t generate a response. Please try again.', 'assistant');
-                        showStatus('⚠ No response content received', 'error');
+                        showStatus('⚠ No response received', 'error');
                     }
                 } else {
                     const errorMsg = data.error || data.message || 'Unknown error';
                     addMessage(`Sorry, I encountered an error: ${errorMsg}`, 'assistant');
-                    showStatus(`✗ Error ${response.status}: ${errorMsg}`, 'error');
+                    showStatus(`✗ Error: ${errorMsg}`, 'error');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -309,22 +376,30 @@
             messageDiv.className = `flex ${role === 'user' ? 'justify-end' : 'justify-start'}`;
             
             const bubble = document.createElement('div');
-            bubble.className = `max-w-md px-4 py-2 rounded-lg ${
+            bubble.className = `${imageUrl ? 'max-w-2xl' : 'max-w-xl'} px-5 py-3 rounded-2xl shadow-sm ${
                 role === 'user' 
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' 
-                    : 'bg-white text-gray-800 border border-purple-200'
+                    ? 'chat-bubble-user' 
+                    : 'chat-bubble-ai'
             }`;
+            
+            if (role === 'assistant') {
+                const header = document.createElement('div');
+                header.className = 'flex items-center gap-2 mb-2';
+                header.innerHTML = '<span class="text-xl">🌸</span><span class="font-semibold text-sm text-green-700">ThreadHer AI</span>';
+                bubble.appendChild(header);
+            }
             
             if (imageUrl) {
                 const img = document.createElement('img');
                 img.src = imageUrl;
-                img.className = 'max-w-xs rounded-lg mb-2';
+                img.className = 'max-w-full max-h-80 rounded-xl mb-3 object-contain border-2 border-green-200';
                 img.alt = 'Uploaded garment';
                 bubble.appendChild(img);
             }
             
             const textDiv = document.createElement('div');
             textDiv.style.whiteSpace = 'pre-wrap';
+            textDiv.style.wordBreak = 'break-word';
             textDiv.textContent = text;
             bubble.appendChild(textDiv);
             
@@ -334,12 +409,9 @@
         }
 
         window.addEventListener('load', async () => {
-            console.log('ThreadHer loaded');
-            console.log('API URL:', API_URL);
-            console.log('Upload URL:', UPLOAD_URL);
-            console.log('Session ID:', sessionId);
+            console.log('ThreadHer AI loaded');
             
-            showStatus('🔗 Testing connection...', 'info');
+            showStatus('🔗 Connecting to ThreadHer AI...', 'info');
             try {
                 const response = await fetch(API_URL, {
                     method: 'POST',
@@ -351,13 +423,12 @@
                 });
                 
                 if (response.ok) {
-                    showStatus('✓ Connected to ThreadHer AI', 'success');
+                    showStatus('✓ Connected successfully!', 'success');
                 } else {
-                    showStatus('⚠ API connection issue - but you can still try!', 'error');
+                    showStatus('⚠ Connection issue', 'error');
                 }
             } catch (error) {
                 showStatus('⚠ Could not reach API', 'error');
-                console.error('Connection test failed:', error);
             }
         });
     </script>
