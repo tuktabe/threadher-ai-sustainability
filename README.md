@@ -2,8 +2,8 @@
 
 **AWS AI Hackathon 2025 Submission**
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live-green)](YOUR_WEBSITE_URL_HERE)
-[![Video](https://img.shields.io/badge/Video-Demo-red)](YOUR_VIDEO_URL_HERE)
+[![Live Demo](https://img.shields.io/badge/Demo-Live-green)](https://threadher-app.s3.us-east-1.amazonaws.com/index.html)
+[![Video](https://img.shields.io/badge/Video-Demo-red)](https://www.loom.com/share/7fb3ca3a02fc45b4a80818e49dab4d77?sid=1e6e18d7-c3ba-4627-8982-c0c50d46daac)
 
 ThreadHer is an AI-powered fashion sustainability advisor that analyzes garment images using Claude 3.5 Sonnet to provide actionable sustainability recommendations, carbon footprint estimates, and eco-friendly alternatives.
 
@@ -167,7 +167,7 @@ Lambda requires:
 
 ## 👥 Team
 
-Built by [YOUR_NAME] for AWS AI Hackathon 2025
+Built by [Nichchaphat Sommhai (Tukta Belding)] for AWS AI Hackathon 2025
 
 ## 📄 License
 
@@ -181,9 +181,9 @@ MIT License - see LICENSE file for details
 
 ## 📞 Contact
 
-- **Demo**: [YOUR_WEBSITE_URL]
-- **Video**: [YOUR_VIDEO_URL]
-- **GitHub**: [YOUR_GITHUB_URL]
+- **Demo**: [https://threadher-app.s3.us-east-1.amazonaws.com/index.html]
+- **Video**: [https://www.loom.com/share/7fb3ca3a02fc45b4a80818e49dab4d77?sid=1e6e18d7-c3ba-4627-8982-c0c50d46daac]
+- **GitHub**: [https://github.com/tuktabe/threadher-ai-sustainability]
 
 ---
 
