@@ -403,6 +403,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ---
 
-**Built with 💜 for sustainable fashion and women in tech**
+**Built with 💜 for sustainable fashion and woman in tech**
 
 *"Threading sustainability into every wardrobe, one garment at a time."*
