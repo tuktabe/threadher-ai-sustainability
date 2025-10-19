@@ -336,7 +336,7 @@ Upload a garment photo via the web interface and ask "Analyze this garment"
 - Conversation continuity
 - Context preservation
 
-## 🎓 What We Learned
+## 🎓 What I Learned
 
 - **Prompt Engineering**: Detailed systematic instructions are crucial for accurate AI classification
 - **Serverless Architecture**: Dual Lambda design (Upload + APIHandler) optimizes performance and reduces latency
